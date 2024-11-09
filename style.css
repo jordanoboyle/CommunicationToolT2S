@@ -98,5 +98,19 @@ select:focus {
 .text-box .close {
   float: right;
   text-align: right;
-  display: block;
+  cursor: pointer;
+}
+
+/* Speech button styling */
+main {
+  display: grid;
+  /* Two ways to write below, 1fr 1fr 1fr 1fr   or   repeat(4 1fr) */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.box img {
+  width: 100%;
+  object-fit: cover;
+  height: 200px
 }
