@@ -61,3 +61,23 @@ const data = [
     text: "I want to go to School."
   },
 ];
+
+data.forEach(createBox);
+
+// Create the boxes for speech
+function createBox(item) {
+  // console.log(item);
+  const box = document.createElement('div');
+  
+  const {image, text} = item;  //This is known as desctructuring. Basically assigning elements within item to vars
+
+  box.classList.add('box');
+  box.innerHTML = `
+    <img src="${image}" alt="${text}" />
+    <p class="info">${text}</p>
+  `;
+
+  //@Eventual speak effect
+  main.appendChild(box);
+}
+
