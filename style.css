@@ -31,7 +31,7 @@ h1 {
 
 .btn {
   cursor: pointer;
-  background-color: darkcyan;
+  background-color: rgba(11, 178, 178, 0.74);
   border: 0;
   border-radius: 9px;
   border-color: wheat;
@@ -40,4 +40,63 @@ h1 {
   padding-top: 5px;
   padding-bottom: 5px;
 
+}
+
+.btn.active {
+  transform: scale(0.98);
+}
+
+.btn:focus,
+select:focus {
+  outline: 0;
+}
+
+.btn-toggle {
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+/* Style Text box */
+.text-box {
+  width: 70%;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  background-color: #333;
+  color: aliceblue;
+  padding: 20px;
+  border-radius: 7px;
+  transition: all 1s ease-in-out;
+  /* This is hiding our Typed Text to Speech box for dynamic use. */
+}
+
+.text-box select {
+  background-color: coral;
+  border: 0;
+  border-radius: 9px;
+  color: aliceblue;
+  font-size: 12px;
+  height: 30px;
+  width: 100%;
+}
+
+.text-box textarea {
+  border: 1px #dadada solid;
+  border-radius: 9px;
+  font-size: 12px;
+  height: 100px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.text-box .btn {
+  width: 100%;
+}
+
+.text-box .close {
+  float: right;
+  text-align: right;
+  display: block;
 }
