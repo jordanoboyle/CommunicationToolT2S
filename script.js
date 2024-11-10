@@ -62,7 +62,11 @@ const data = [
   },
 ];
 
-data.forEach(createBox);
+
+data.forEach(speechBox => {
+  createBox(speechBox);
+
+});
 
 // Create the boxes for speech
 function createBox(item) {
@@ -74,10 +78,34 @@ function createBox(item) {
   box.classList.add('box');
   box.innerHTML = `
     <img src="${image}" alt="${text}" />
-    <p class="info">${text}</p>
+    <p class="info wiggle">${text}</p>  
   `;
+  // needed "info wiggle" for class targetting in each new grid box.
 
   //@Eventual speak effect
   main.appendChild(box);
+
+  wiggleText(box.querySelector('.wiggle'))
+}
+
+
+
+function wiggleText(element) {
+  let SOURCE_TEXT = element.textContent;
+  const $characters = [];
+  SOURCE_TEXT.split('').forEach((char, idx) => {
+    const $char = document.createElement('span');
+    $char.textContent = char;
+
+    //Staggering the wiggle
+
+    $char.style.setProperty('animation-delay',
+      `${idx * -150}ms`
+    );
+    $characters.push($char);
+  });
+
+  element.innerHTML = '';
+  $characters.forEach($char => element.appendChild($char));
 }
 
