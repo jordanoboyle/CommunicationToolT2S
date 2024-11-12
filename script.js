@@ -1,6 +1,6 @@
 //DOM elements
 const main = document.querySelector('main');
-const voiceSelect = document.getElementById('voices');
+const voicesSelect = document.getElementById('voices');
 const textarea = document.getElementById('text');
 const readBtn = document.getElementById('read');
 const toggleBtn = document.getElementById('toggle');
@@ -97,27 +97,56 @@ function createBox(item) {
   wiggleText(box.querySelector('.wiggle'));
 }
 
+
+//BUILD THE ABILITY TO USE THE VERBAL SPEAKING
 //Initialize Speech synthesis
+const message = new SpeechSynthesisUtterance();
+
 
 // Store voices
 let voices = [];
+
 function getSpeechVoices() {
   voices = speechSynthesis.getVoices();
 
   voices.forEach(voice => {
     const option = document.createElement('option');
 
-    option.value = voice.namel
+    option.value = voice.name;
     option.innerText = `${voice.name} ${voice.lang}`;
 
-    voiceSelect.appendChild(option);
+    voicesSelect.appendChild(option);
   });
 }
+
+
+//Set Text to speak
+function setTextMessage(text) {
+  message.text = text;
+}
+
+
+//Speak the set text
+function speakText() {
+  speechSynthesis.speak(message);
+}
+
+
+//Set Voice
+function setVoice(e) {
+  message.voice = voices.find(voice => {
+    return voice.name === e.target.value;
+    
+  });
+} 
+
 
 //Voices Changed
 speechSynthesis.addEventListener('voiceschanged', getSpeechVoices);
 
 
+//STYLIZED BOXES (APP FOR KIDS)
+//Setting the Dynamic Wiggle
 function wiggleText(element) {
   let SOURCE_TEXT = element.textContent;
   const $characters = [];
@@ -138,7 +167,7 @@ function wiggleText(element) {
 }
 
 
-getSpeechVoices();
+
 
 //Event Listeners
 //Toggle Text Box
@@ -146,3 +175,9 @@ toggleBtn.addEventListener('click', () => document.getElementById('text-box').cl
 
 //Close Button on Text Box
 closeBtn.addEventListener('click', () => document.getElementById('text-box').classList.remove('show'));
+
+//Set the Voice choice
+voicesSelect.addEventListener('change', setVoice);
+
+
+getSpeechVoices();
