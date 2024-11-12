@@ -174,10 +174,19 @@ function wiggleText(element) {
 toggleBtn.addEventListener('click', () => document.getElementById('text-box').classList.toggle('show'));
 
 //Close Button on Text Box
-closeBtn.addEventListener('click', () => document.getElementById('text-box').classList.remove('show'));
+closeBtn.addEventListener('click', () => {
+  document.getElementById('text-box').classList.remove('show');
+  let textBoxContent = document.getElementById('text');
+  textBoxContent.value = '';
+});
 
 //Set the Voice choice
 voicesSelect.addEventListener('change', setVoice);
 
+//Read Personal Text Button
+readBtn.addEventListener('click', () => {
+  setTextMessage(textarea.value);
+  speakText();
+});
 
 getSpeechVoices();
