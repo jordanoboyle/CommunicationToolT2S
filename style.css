@@ -69,6 +69,7 @@ select:focus {
   padding: 20px;
   border-radius: 7px;
   transition: all 1s ease-in-out;
+  z-index: 800;
   /* This is hiding our Typed Text to Speech box for dynamic use. */
 }
 
@@ -89,6 +90,10 @@ select:focus {
   height: 100px;
   width: 100%;
   margin-top: 10px;
+}
+
+.text-box.show {
+  transform: translate(-50%, 0)
 }
 
 .text-box .btn {

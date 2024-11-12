@@ -82,12 +82,40 @@ function createBox(item) {
   `;
   // needed "info wiggle" for class targetting in each new grid box.
 
-  //@Eventual speak effect
+  //Speak Event
+  box.addEventListener('click', () => {
+    setTextMessage(text);
+    speakText();
+
+    //add active effect
+    box.classList.add('active');
+    setTimeout(() => box.classList.remove('active'), 1000);
+  });
+
   main.appendChild(box);
 
-  wiggleText(box.querySelector('.wiggle'))
+  wiggleText(box.querySelector('.wiggle'));
 }
 
+//Initialize Speech synthesis
+
+// Store voices
+let voices = [];
+function getSpeechVoices() {
+  voices = speechSynthesis.getVoices();
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+
+    option.value = voice.namel
+    option.innerText = `${voice.name} ${voice.lang}`;
+
+    voiceSelect.appendChild(option);
+  });
+}
+
+//Voices Changed
+speechSynthesis.addEventListener('voiceschanged', getSpeechVoices);
 
 
 function wiggleText(element) {
@@ -109,3 +137,12 @@ function wiggleText(element) {
   $characters.forEach($char => element.appendChild($char));
 }
 
+
+getSpeechVoices();
+
+//Event Listeners
+//Toggle Text Box
+toggleBtn.addEventListener('click', () => document.getElementById('text-box').classList.toggle('show'));
+
+//Close Button on Text Box
+closeBtn.addEventListener('click', () => document.getElementById('text-box').classList.remove('show'));
